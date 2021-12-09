@@ -6,8 +6,14 @@ const app = express();
 const jobRouter = require('./controller/jobRouter');
 const userRouter = require('./controller/userRouter');
 
+
+// const mongoEndpoint = "mongodb+srv://banana777:banana777@" +
+// "webfinalproject.n8m5z.mongodb.net/WebFinalProject?retryWrites=true&w=majority"
+
+const mongoEndpoint = process.env.MONGODB_URI || 'mongodb://localhost:27017/jobboard';
+
 mongoose
-    .connect('mongodb://localhost:27017/jobboard', { useNewUrlParser: true })
+    .connect(mongoEndpoint, { useNewUrlParser: true })
     .catch(e => {
         console.error('Connection error', e.message)
     });
